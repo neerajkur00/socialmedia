@@ -1,0 +1,55 @@
+<%- include('./partials/header')%>
+
+<a href="/profile" class="absolute top-5 start-10 text-3xl"><i class="ri-arrow-left-line"></i></a>
+<div class="w-[80vw] h-[80vh]  m-auto mt-[10vh] p-1 flex gap-[5%] ">
+    <div class="flex flex-col p-10 jutify-center items-center w-[30%] gap-10 bg-blue-800 rounded-[50px]">
+        <div class="flex jutify-center items-center gap-3">
+            <form class="hidden form-image" action="/image/<%= user._id%>" enctype="multipart/form-data" method="post">
+                <input class="input-image" type="file" name="profilepic">
+            </form>
+            <img src="/images/<%= user.profilepic%>" class="preview-image w-16 h-16 rounded-full" alt="">
+
+            
+            <h1 class="text-4xl text-white">Hello👋</h1>
+        </div>
+        <a href="/resetPassword/<%= user._id%>" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reset Password</a>
+        <a href="/login" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login Another Account</a>
+        <a href="/delete/<%= user._id%>" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Delete Account</a>
+        <a href="/logout" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Logout</a>
+    </div>
+    <form action="/userUpdate/<%= user._id%>" method="post" class="w-[65%] flex flex-col justify-center items-center bg-orange-600 rounded-[50px] font-serif gap-10">
+       <div class="w-[70%] flex justify-between items-center">
+        <label for="firstname" class="text-xl text-white">First  Name :</label>
+        <input type="text" name="firstname" value="<%= user.firstname%>"  id="firstname" class="p-2 text-2xl rounded-2xl w-[75%]">
+       </div>
+        <div class="w-[70%] flex justify-between items-center">
+            <label for="lastname" class="text-xl text-white">Last  Name :</label>
+        <input type="text" name="lastname" value="<%= user.lastname%>" id="lastname" class="p-2 text-2xl rounded-2xl w-[75%]">
+        </div>
+        <div class="w-[70%] flex justify-between items-center">
+            <label for="username" class="text-xl text-white">User  Name :</label>
+        <input type="text" name="username" value="<%= user.username%>" id="username" class="p-2 text-2xl rounded-2xl w-[75%]">
+        </div>
+        <div class="w-[70%] flex justify-between items-center">
+            <label for="email" class="text-xl text-white">Email :</label>
+        <input type="text" name="email" value="<%=user.email%>" id="email" class="p-2 text-2xl rounded-2xl w-[75%]">
+        </div>
+        <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[15%]">Edit Profile</button>
+    </form>
+</div>
+
+<script>
+    const inputimage = document.querySelector(".input-image");
+    const previewimage = document.querySelector(".preview-image")
+    const formimage = document.querySelector(".form-image")
+    previewimage.addEventListener("click", function () {
+      inputimage.click()
+    })
+    inputimage.addEventListener("change", function () {
+      formimage.submit()
+    })
+  </script>
+
+
+<%- include('./partials/footer')%>
+

@@ -1,0 +1,31 @@
+<%- include('./partials/header')%>
+
+  <a href="/profile"><i class="ri-close-circle-fill absolute text-5xl right-[12%] top-[6vh] text-zinc-800"></i></a>
+  <form action="/update-post/<%= post._id%>" method="post" enctype="multipart/form-data"
+    class="w-[70vw] h-[80vh] bg-white shadow-2xl border-2 rounded-[50px] m-auto mt-[10vh] flex">
+    <div class="w-[50%] h-full">
+      <input class="input-image hidden" type="file" name="media" value="/images/<%= post.media%>">
+      <img class="w-[60%] m-auto mt-5" src="/images/download (4).png" alt="images">
+      <p
+        class=" w-max mt-16 mx-[25%] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+        Select now</p>
+    </div>
+    <div class="w-[45%]">
+      <textarea type="text" class="w-full h-[60%] bg-zinc-800 p-5 text-white border-2 mt-5 rounded-[20px]" name="title"
+        placeholder="Write your Thought?"><%= post.title%></textarea>
+      <button
+        class="m-auto w-full p-2 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-10">Update
+        Post</button>
+    </div>
+  </form>
+
+
+  <script>
+    const inputimage = document.querySelector(".input-image");
+    const triggerimage = document.querySelector(".trigger-image")
+
+    triggerimage.addEventListener("click", function () {
+      inputimage.click()
+    })
+  </script>
+  <%- include('./partials/footer')%>

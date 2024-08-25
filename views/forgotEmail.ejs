@@ -1,0 +1,10 @@
+<%- include('./partials/header')%>
+
+<a href="/login" class="p-10 text-3xl"><i class="ri-arrow-left-line"></i></a>
+<h2 class="text-center text-3xl mt-20 text-blue-400">Verify Your Mail</h2>
+<form action="/forgot-email" method="post" class="w-[30%] mt-5 border-2 bg-white shadow-2xl flex flex-col p-10 gap-5 m-auto rounded-3xl">
+    <input class="p-3 text-2xl rounded-2xl border border-gray-500" type="email" placeholder="email" name="email">
+    <button class="p-3 text-2xl rounded-2xl bg-green-900 text-gray-100">Verify Mail</button>
+</form>
+
+<%- include('./partials/footer')%>

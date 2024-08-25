@@ -1,0 +1,52 @@
+<%- include('./partials/header')%>
+
+<div class="flex w-full px-10 py-5 justify-end gap-10 fixed">
+        <h2><a class="text-2xl" href="/feed"><i class="ri-home-4-line"></i></a></h2>
+        <h2 ><a class="text-2xl" href="/create-post"><i class="ri-add-box-line"></i></a></h2>
+        <h2><a class="text-2xl" href="/userUpdate/<%=user._id%>"><i class="ri-pencil-fill"></i></a>
+        </h2>
+</div>
+
+<div class="w-full h-max px-32 py-20 flex flex-wrap gap-10">
+    <% user.posts.forEach((post)=> { %>
+    <div class="w-[23vw] h-[60vh] bg-white rounded-3xl border-2 text-gray-800 font-serif shadow-2xl">
+        <div class="w-full flex p-2">
+            <img class="w-14 h-14 object-center object-cover rounded-full" src="/images/<%= user.profilepic %>" alt="">
+            <div class="ms-4">
+                <h2 class="text-2xl"><%= user.username %></h2>
+                <p> <%= post.createdAt.toLocaleTimeString()%> |
+                    <%= post.createdAt.toLocaleDateString()%></p>
+            </div>
+        </div>
+        <img class="w-full h-[60%] object-center object-cover mt-5" src="/images/<%= post.media%>" alt="">
+        <div class="p-2 flex justify-between">
+            <div>
+                <span class="text-2xl"><%= post.likes.length%></span>
+                <a href="/like/<%= post._id%>" class="text-2xl">
+                    <% if(post.likes.includes(user._id)) { %>
+                        <i class="text-red-600 ri-heart-3-fill"></i>
+                        <% } else { %>
+                            <i class="ri-heart-3-line"></i>
+                            <% } %>
+                </a>
+            <a href="" class="text-2xl"><i class="ri-chat-1-line"></i></a>
+            </div>
+            <div>
+                <a href="/delete-post/<%=post._id%>" class="text-2xl"><i class="ri-delete-bin-7-line"></i></a>
+                <a href="/update-post/<%= post._id%>" class="text-2xl"><i class="ri-pencil-fill"></i></a>
+            </div>
+        </div>
+        <p class="px-2"><%= post.title%></p>
+    </div>
+    <% }) %>
+
+    
+
+</div>
+
+<%if(user.posts.length == 0){%>
+    <h2 class="text-center text-[300px] text-zinc-200 mt-[-100px]"><i class="ri-user-3-line"></i> </h2>
+    <h2 class="text-center text-3xl text-zinc-300 mt-[-50px]">You have no posts</h2>
+<%}%>
+
+<%- include('./partials/footer')%>
